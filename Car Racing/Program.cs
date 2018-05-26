@@ -45,7 +45,7 @@ namespace Car_Racing
 
             g.ReadyToStart(sp1, sp2);
 
-            g.MileInfo(sp1, sp2);
+            Console.ReadKey();
         }
     }
 }

@@ -14,17 +14,26 @@ namespace Car_Racing.Classes
     public class Game
     {
         int mile = 100;
-
+        private Car winner;
 
         public void ReadyToStart(SportCar sp, SportCar sp2)
         {
-            Console.WriteLine("The car " + sp.Name + " Is ready");
-            Thread.Sleep(2000);
-            Console.WriteLine("The car " + sp2.Name + " Is ready");
-            Thread.Sleep(2000);
+            winner = (Car)null;
+            sp.Ready += CarReady;
+            sp2.Ready += CarReady;
+            sp.Driving += CarDriving; 
+            sp2.Driving += CarDriving;
+            sp.Finish += CarFinish;
+            sp2.Finish += CarFinish;
+
             Console.Clear();
+
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Get redy");
+
+            sp.GetReady();
+            sp2.GetReady();
+
             Thread.Sleep(2000);
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -36,47 +45,36 @@ namespace Car_Racing.Classes
             Thread.Sleep(800);
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
-            sp.Drive();
-            sp2.Drive();
-            Thread.Sleep(500);
-            Console.Clear();
-        }
 
-        public void MileInfo(SportCar sp, SportCar sp2)
-        {
-            float trassa = 0;
-
-            //if (sp.win < sp2.win)
-            //{
-            //    while (trassa != 1000)
-            //    {
-            //        sp.win = (trassa / (sp.Speed * 3));
-            //        sp2.win = (trassa / (sp.Speed * 3));
-            //        Console.WriteLine("Car " + sp.Name + " time " + sp.win);
-            //        Console.WriteLine("Car " + sp2.Name + " time " + sp2.win);
-            //        Thread.Sleep(300);
-            //        trassa += 100;
-            //        Console.Clear();
-            //    }
-            //}
-                SportCar winner = null;
-
-            for (int t = 0; ; t++)
+            for (float t = 0; ; t += 0.1F)
             {
-                float distSP = sp.Speed * t;
-                float distSP2 = sp2.Speed * t;
-                Console.WriteLine("Car " + sp.Name + " distanse " + distSP);
-                Console.WriteLine("Car " + sp2.Name + " distanse " + distSP2);
-                if (distSP >= 1000 || distSP2 >= 1000)
-                {
-                    winner = (distSP > distSP2) ? sp : sp2;
-                    break;
-                }
-              
-                Thread.Sleep(300);
                 Console.Clear();
-            }
 
+                Console.WriteLine($"Time {TimeSpan.FromSeconds(t)}" );
+                sp.Drive(400);
+                sp2.Drive(400);
+                Thread.Sleep(100);
+                if (winner != null)
+                    break;
+            }
+            //Console.Clear();
+            Console.WriteLine("The winner is " + winner.Name);
         }
+
+        private void CarFinish(Car car)
+        {
+            winner = car;
+        }
+
+        private void CarDriving(Car car, float distance)
+        {
+            Console.WriteLine("Car " + car.Name + " distanse " + distance);
+        }
+
+        private void CarReady(Car car)
+        {
+            Console.WriteLine("The car " + car.Name + " Is ready");
+        }
+        
     }
 }
