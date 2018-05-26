@@ -59,21 +59,22 @@ namespace Car_Racing.Classes
             //        Console.Clear();
             //    }
             //}
+                SportCar winner = null;
 
             for (int t = 0; ; t++)
             {
                 float distSP = sp.Speed * t;
                 float distSP2 = sp2.Speed * t;
-                SportCar winner = null;
-                if (distSP >= 1000)
+                Console.WriteLine("Car " + sp.Name + " distanse " + distSP);
+                Console.WriteLine("Car " + sp2.Name + " distanse " + distSP2);
+                if (distSP >= 1000 || distSP2 >= 1000)
                 {
-                    Console.WriteLine("Car " + sp.Name + " distanse " + distSP);
-                   // Console.WriteLine("Car " + sp2.Name + " distanse " + distSP2);
-                    Thread.Sleep(300);
-                    Console.Clear();
-                    winner = sp;
+                    winner = (distSP > distSP2) ? sp : sp2;
+                    break;
                 }
-                else if()
+              
+                Thread.Sleep(300);
+                Console.Clear();
             }
 
         }
