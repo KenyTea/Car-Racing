@@ -44,21 +44,22 @@ namespace Car_Racing.Classes
 
         public void MileInfo(SportCar sp, SportCar sp2)
         {
-            float trassa = 1000;
-            
-                while (trassa != 0)
+            float trassa = 0;
+
+            if (sp.win < sp2.win)
+            {
+                while (trassa != 1000)
                 {
                     sp.win = (trassa / (sp.Speed * 3));
                     sp2.win = (trassa / (sp.Speed * 3));
                     Console.WriteLine("Car " + sp.Name + " time " + sp.win);
                     Console.WriteLine("Car " + sp2.Name + " time " + sp2.win);
                     Thread.Sleep(300);
-                    trassa -= 100;
+                    trassa += 100;
                     Console.Clear();
                 }
-            
+            }
          
-
         }
     }
 }
