@@ -46,20 +46,30 @@ namespace Car_Racing.Classes
         {
             float trassa = 0;
 
-            if (sp.win < sp2.win)
+            //if (sp.win < sp2.win)
+            //{
+            //    while (trassa != 1000)
+            //    {
+            //        sp.win = (trassa / (sp.Speed * 3));
+            //        sp2.win = (trassa / (sp.Speed * 3));
+            //        Console.WriteLine("Car " + sp.Name + " time " + sp.win);
+            //        Console.WriteLine("Car " + sp2.Name + " time " + sp2.win);
+            //        Thread.Sleep(300);
+            //        trassa += 100;
+            //        Console.Clear();
+            //    }
+            //}
+
+            for (int t = 0; ; t += 10)
             {
-                while (trassa != 1000)
-                {
-                    sp.win = (trassa / (sp.Speed * 3));
-                    sp2.win = (trassa / (sp.Speed * 3));
-                    Console.WriteLine("Car " + sp.Name + " time " + sp.win);
-                    Console.WriteLine("Car " + sp2.Name + " time " + sp2.win);
-                    Thread.Sleep(300);
-                    trassa += 100;
-                    Console.Clear();
-                }
+                float distSP = sp.Speed * t;
+                float distSP2 = sp2.Speed * t;
+                Console.WriteLine("Car " + sp.Name + " distanse " + distSP);
+                Console.WriteLine("Car " + sp2.Name + " distanse " + distSP2);
+                Thread.Sleep(300);
+                Console.Clear();
             }
-         
+
         }
     }
 }
