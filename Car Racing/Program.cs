@@ -44,6 +44,8 @@ namespace Car_Racing
             SportCar sp2 = new SportCar();
 
             g.ReadyToStart(sp1, sp2);
+
+            g.MileInfo(sp1, sp2);
         }
     }
 }

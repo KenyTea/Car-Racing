@@ -11,7 +11,7 @@ namespace Car_Racing.Classes
 
     public abstract class Car
     {
-        public abstract int Speed { get; set; }
+        public abstract float Speed { get; set; }
 
         public abstract void Drive();
     }

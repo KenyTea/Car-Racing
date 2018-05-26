@@ -11,9 +11,10 @@ namespace Car_Racing.Classes
 
     public class SportCar : Car
     {
-        public override int Speed { get; set; }
+        public override float Speed { get; set; }
         public int Name { get; set; }
-        private Random r = new Random();
+        public float win { get; set; }
+        private static Random r = new Random();
 
         public SportCar()
         {            
@@ -23,7 +24,7 @@ namespace Car_Racing.Classes
 
         public override void Drive()
         {
-            Console.WriteLine("Dryn, Dryn, Brrrrrrrrrrrrrrrr");
+            Console.WriteLine(Name + "   Dryn, Dryn, Brrrrrrrrrrrrrrrr");
         }
     }
 }
