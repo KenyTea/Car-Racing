@@ -21,7 +21,7 @@ namespace Car_Racing.Classes
             winner = (Car)null;
             sp.Ready += CarReady;
             sp2.Ready += CarReady;
-            sp.Driving += CarDriving; 
+            sp.Driving += CarDriving;
             sp2.Driving += CarDriving;
             sp.Finish += CarFinish;
             sp2.Finish += CarFinish;
@@ -48,16 +48,16 @@ namespace Car_Racing.Classes
 
             for (float t = 0; ; t += 0.1F)
             {
-                Console.Clear();
+                Console.SetCursorPosition(0, 0); // Убрал зависание из-за Console.Clear();
 
-                Console.WriteLine($"Time {TimeSpan.FromSeconds(t)}" );
-                sp.Drive(400);
-                sp2.Drive(400);
+                Console.WriteLine($"Time {TimeSpan.FromSeconds(t)}");
+                sp.Drive(t, 400);
+                sp2.Drive(t, 400);
                 Thread.Sleep(100);
                 if (winner != null)
                     break;
             }
-            //Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("The winner is " + winner.Name);
         }
 
@@ -75,6 +75,6 @@ namespace Car_Racing.Classes
         {
             Console.WriteLine("The car " + car.Name + " Is ready");
         }
-        
+
     }
 }

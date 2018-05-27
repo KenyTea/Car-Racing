@@ -14,17 +14,23 @@ namespace Car_Racing.Classes
 
     public abstract class Car
     {
+        protected Ready readyHandler;
+
         public int Name { get; set; }
         public float Speed { get; set; }
         public float Distanse { get; set; }
 
-        public abstract void Drive(float limit);
+        public abstract void Drive(float time, float limit);
 
         public abstract void GetReady();
 
-        public abstract event Ready Ready;
-        public abstract event Finish Finish;
-        public abstract event Driving Driving;
+        public event Ready Ready // событие
+        {
+            add { readyHandler += value; }
+            remove { readyHandler -= value; }
+        }
+        public abstract event Finish Finish; // событие 
+        public abstract event Driving Driving; // событие
 
     }
 }

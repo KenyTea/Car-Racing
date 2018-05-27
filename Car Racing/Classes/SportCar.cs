@@ -21,7 +21,6 @@ namespace Car_Racing.Classes
 
         }
 
-        public override event Ready Ready;
         public override event Finish Finish;
         public override event Driving Driving;
 
@@ -29,14 +28,15 @@ namespace Car_Racing.Classes
         {
             Distanse = 0;
             Thread.Sleep(2000);
-            if (Ready != null)
-                Ready(this);
+            if (readyHandler != null)
+                readyHandler(this);
         }
 
-        public override void Drive(float limit)
+        public override void Drive(float time, float limit)
         {
-            Speed = r.Next(50, 150);
-            Distanse += Speed*1000/36000;
+            var Acceler = r.Next(10, 20);
+            Speed = Acceler * time;
+            Distanse += Speed * 1000 / 36000;
             if (Driving != null)
             {
                 Driving(this, Distanse);
